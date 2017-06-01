@@ -26,9 +26,28 @@
 + npm install babel-plugin-import --save-dev
 ```
 // .babelrc or babel-loader option
-{
-  "plugins": [
-    ["import", { libraryName: "antd", style: "css" }] // `style: true` 会加载 less 文件
-  ]
+ {
+    test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
+    loader: 'babel',// 加载模块 "babel" 是 "babel-loader" 的缩写
+    query: {
+        presets: ['es2015', 'react','stage-0','stage-1','stage-2','stage-3'],
+        "plugins": [
+            "transform-node-env-inline",
+            "transform-object-assign",
+            // ant babel-plugin-import
+            ["import", [
+                {
+                    "libraryName": "antd",
+                    "libraryDirectory": "lib",   // default: lib
+                    "style": "css"
+                },
+                {
+                    "libraryName": "material-ui",
+                    "libraryDirectory": "components",  // default: lib
+                    "camel2DashComponentName": false,  // default: true
+                }
+            ]]
+        ]
+    }
 }
 ```

@@ -2,11 +2,12 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 
-import Hello from '../components/Hello.js'
+// 自定义功能模块
+import HelloWord from '../components/HelloWord.js'
 
 ReactDOM.render(
     <div>
-       <Hello/>
+       <HelloWord />
     </div>,
     document.getElementById('app')
 )

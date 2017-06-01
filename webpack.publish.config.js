@@ -27,7 +27,24 @@ module.exports = {
                 test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
                 loader: 'babel',// 加载模块 "babel" 是 "babel-loader" 的缩写
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react','stage-0','stage-1','stage-2','stage-3'],
+                    "plugins": [
+                        "transform-node-env-inline",
+                        "transform-object-assign",
+                        // ant babel-plugin-import
+                        ["import", [
+                            {
+                                "libraryName": "antd",
+                                "libraryDirectory": "lib",   // default: lib
+                                "style": "css"
+                            },
+                            {
+                                "libraryName": "material-ui",
+                                "libraryDirectory": "components",  // default: lib
+                                "camel2DashComponentName": false,  // default: true
+                            }
+                        ]]
+                    ]
                 }
             },
             {
@@ -38,6 +55,10 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
             },
+            {
+                test: /\.less$/, // 去掉exclude: /^node_modules$/和include: [APP_PATH]是为了babel-plugin-import按需加载antd资源
+                loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'less'])
+            },
             // 1kb=1024b 1b=8bit   25000bit~3kb
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -47,7 +68,6 @@ module.exports = {
                 test: /\.(eot|woff|ttf|woff2|svg)$/,
                 loader: 'url'
             }
-
         ]
     },
     resolve: {
