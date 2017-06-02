@@ -3,11 +3,11 @@ import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 
 // 自定义功能模块
-import AppContainer from '../containers/AppContainer.js'
+import Routers from '../js/routers.js'
 
 ReactDOM.render(
     <div className='apphight'>
-       <AppContainer />
+       <Routers />
     </div>,
     document.getElementById('app')
 )
