@@ -15,7 +15,7 @@ const { Content, Sider } = Layout;
 
 export default class MovieContainer extends Component{
     constructor(props){
-        super(props)
+        super(props)        
     }
     render(){
         // console.log(`4:${this.props.params.classify}`);
@@ -31,10 +31,16 @@ export default class MovieContainer extends Component{
                 break;
             case 'search':
                 _selkey=['0'];
+                // js取消选中
+                var selelmt=document.getElementsByClassName('ant-menu-item-selected')[1];
+                if(selelmt){
+                    var reg = new RegExp("(\\s|^)" + "ant-menu-item-selected" + "(\\s|$)");
+                    selelmt.className = selelmt.className.replace(reg, " ");
+                }
                 break;
             default:
                 break;
-        }
+        }        
         return (
             <div>
                 <Layout >

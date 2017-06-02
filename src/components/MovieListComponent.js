@@ -21,6 +21,7 @@ export default class MovieListComponent extends Component{
         // 获取参数
         let _classify=this.context.router.params.classify || 'in_theaters';
         let _page=this.context.router.params.page || 1;
+        console.log(`classify:${_classify},page:${_page},q:${this.context.router.params.q}`)
         //根据参数去服务请求数据
         return (
             <div>

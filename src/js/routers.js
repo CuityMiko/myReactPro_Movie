@@ -24,7 +24,7 @@ export default class Routers extends Component{
                 <Route path='/' component={AppContainer}>
                     {/*默认MovieContainer为首页*/}
                     <IndexRoute component={MovieContainer} />
-                    <Route path='movie/:classify/:page' component={MovieContainer}></Route>
+                    <Route path='movie/:classify/:page(/:q)' component={MovieContainer}></Route>
                     <Route path='movie/about' component={AboutContainer}></Route>
                     <Route path='movie_detail/:id' component={MovieDetailContainer}></Route>
                 </Route>
