@@ -3,11 +3,11 @@ import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 
 // 自定义功能模块
-import HelloWord from '../components/HelloWord.js'
+import AppContainer from '../containers/AppContainer.js'
 
 ReactDOM.render(
-    <div>
-       <HelloWord />
+    <div className='apphight'>
+       <AppContainer />
     </div>,
     document.getElementById('app')
 )
