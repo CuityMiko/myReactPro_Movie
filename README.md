@@ -20,6 +20,7 @@
 + src/services : 获取数据服务
 + src/containers : 路由的容器目录
 + src/js/routers.js : 路由文件
++ movie_server : server服务器代理
 + 运行:npm run start
 
 ### UI框架使用 Ant Design of React
