@@ -3,10 +3,13 @@
  */
 import React,{Component} from 'react'
 import fetchJsonp from 'fetch-jsonp'
+// 全局配置
+import Config from '../js/config.js'
 
 export default class MovieServices{
     // 获取电影列表数据
     static getMovieListData(movieobj){
+        let _msg=JSON.stringify(movieobj);
         //Get方式
         // let _url=`http://127.0.0.1:10086/movie/getlist?classify=${movieobj.classify}&pageindex=${movieobj.pageindex}&pagecount=${movieobj.pagecount}&city=杭州`;
         // fetch(_url)  
@@ -26,13 +29,13 @@ export default class MovieServices{
 
         //Post方式 + Promise/A+ 规范解决异步回调
         return new Promise((resolve,reject)=>{
-            let _url=`http://127.0.0.1:10086/movie/getlist`;
+            let _url=`${Config.ServerHostURL}/movie/getlist`;
             fetch(_url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: `classify=${movieobj.classify}&pageindex=${movieobj.pageindex}&pagecount=${movieobj.pagecount}&city=杭州`
+            body: `msg=${_msg}`
             }).then(function(res) {
                 if (res.ok) {
                     return res.json();

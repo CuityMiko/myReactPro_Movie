@@ -15,13 +15,14 @@ var getlist=function(req, res, next){
     // }
     // var promise=movieServices.getmovielist(req.query.classify,obj);
     //Post请求方式
+    var _msgobj=JSON.parse(req.body.msg);
     var obj= {
-        start: parseInt(req.body.pageindex-1)*parseInt(req.body.pagecount),
-        count:parseInt(req.body.pagecount),
-        city:req.body.city,
-        q:req.body.q
+        start: parseInt(_msgobj.pageindex-1)*parseInt(_msgobj.pagecount),
+        count:parseInt(_msgobj.pagecount),
+        city:_msgobj.city,
+        q:_msgobj.q
     }
-    var promise=movieServices.getmovielist(req.body.classify,obj);
+    var promise=movieServices.getmovielist(_msgobj.classify,obj);
     promise.then((data)=>{
         res.json({result:true,data:data});
     },(err)=>{
