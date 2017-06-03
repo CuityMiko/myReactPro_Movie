@@ -10,11 +10,6 @@ import { Layout, Menu, Icon,Row,Col } from 'antd';
 // 自定义组件
 import MovieListComponent from '../components/MovieListComponent.js'
 
-// 数据服务
-import MovieServices from '../services/MovieServices.js'
-// 全局配置
-import Config from '../js/config.js'
-
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -22,21 +17,10 @@ export default class MovieContainer extends Component{
     constructor(props){
         super(props)        
     }
+    // 生命周期函数，组件将要接收到新的参数时触发（props上的属性值发生变化的时候触发）
+    componentWillReceiveProps(nextProps){
+    }
     render(){
-        let movieobj={
-            classify:this.props.params.classify || 'in_theaters',
-            pageindex:this.props.params.page || 1,
-            pagecount:Config.PageSize,
-            city:Config.City
-        }
-        let mpromise = MovieServices.getMovieListData(movieobj);
-        mpromise.then((data)=>{
-            console.log(data);
-        },(err)=>{
-            console.log(err);
-        }).catch((err)=>{
-            console.log(err);
-        })
         //设置选中项
         let _selkey=['1'];
         switch (this.props.params.classify) {
@@ -59,7 +43,7 @@ export default class MovieContainer extends Component{
                 break;
         }        
         return (
-            <div>
+            <div className='apphight'>
                 <Layout >
                     {/*左侧菜单*/}
                     <Sider breakpoint="lg" collapsedWidth="0" width={200} style={{ background: '#fff',height:'100%' }}
@@ -84,10 +68,10 @@ export default class MovieContainer extends Component{
                         </SubMenu>
                         </Menu>
                     </Sider>
-                    <Layout >
+                    <Layout>
                         {/*内容列表*/}
                         <Content style={{ background: '#fff', padding: 15, margin: 0, minHeight: 280 }}>
-                            <MovieListComponent />
+                            <MovieListComponent classify={this.props.params.classify} page={this.props.params.page} q={this.props.params.q}/>
                         </Content>
                     </Layout>
                 </Layout>
