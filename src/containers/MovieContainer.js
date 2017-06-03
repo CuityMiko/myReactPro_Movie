@@ -10,6 +10,8 @@ import { Layout, Menu, Icon,Row,Col } from 'antd';
 // 自定义组件
 import MovieListComponent from '../components/MovieListComponent.js'
 
+import MovieServices from '../services/MovieServices.js'
+
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -18,6 +20,12 @@ export default class MovieContainer extends Component{
         super(props)        
     }
     render(){
+        let movieobj={
+            classify:this.props.params.classify || 'in_theaters',
+            pageindex:this.props.params.page || 1,
+            pagecount:12
+        }
+        MovieServices.getMovieListData(movieobj);
         // console.log(`4:${this.props.params.classify}`);
         // console.log(`4:${this.props.params.page}`);
         //设置选中项
