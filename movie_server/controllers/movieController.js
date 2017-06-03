@@ -30,8 +30,22 @@ var getlist=function(req, res, next){
     })
 }
 
+//获取电影详情
+var getdetail=function(req,res,next){
+    var _msgobj=JSON.parse(req.body.msg);
+    var obj= {
+        id: _msgobj.id
+    }
+    var promise=movieServices.getmoviedetail(obj);
+    promise.then((data)=>{
+        res.json({result:true,data:data});
+    },(err)=>{
+        res.json({result:false,data:err});
+    })
+}
+
 // 练习promise/A+规范
 var getpresult=function(req,res,next){
     res.json({result:parseInt(req.body.num1)+parseInt(req.body.num2)});
 }
-module.exports = {getlist,getpresult}
+module.exports = {getlist,getpresult,getdetail}

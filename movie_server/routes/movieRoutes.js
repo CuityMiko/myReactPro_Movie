@@ -11,4 +11,7 @@ module.exports = function (app) {
     app.post('/examples/promisea', function (req, res, next) { //练习promise/A+规范
         movieController.getpresult(req,res,next);
     });
+    app.post('/movie/detail', function (req, res, next) { //练习promise/A+规范
+        movieController.getdetail(req,res,next);
+    });
 }

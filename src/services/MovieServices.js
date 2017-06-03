@@ -61,4 +61,27 @@ export default class MovieServices{
         //     console.log('parsing failed', ex)
         // })
     }
+    // 获取电影详情
+    static getMovieDetail(movieobj){
+        let _msg=JSON.stringify(movieobj);
+        //Post方式 + Promise/A+ 规范解决异步回调
+        return new Promise((resolve,reject)=>{
+            let _url=`${Config.ServerHostURL}/movie/detail`;
+            fetch(_url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `msg=${_msg}`
+            }).then(function(res) {
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then((data)=>{
+                resolve(data);
+            }).catch((err)=>{
+                reject(err);
+            })
+        })
+    }
 }

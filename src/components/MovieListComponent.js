@@ -61,6 +61,11 @@ export default class MovieListComponent extends Component{
             })
         }
         obj=obj||this.state;
+        // 如果为搜索的情况
+        if(this.context.router.params.classify=='search'){
+            obj.classify=this.context.router.params.classify;
+            obj.q=this.context.router.params.q
+        }
         let movieobj={
             classify:obj.classify || 'in_theaters',
             pageindex:obj.page || 1,
@@ -138,7 +143,7 @@ export default class MovieListComponent extends Component{
                                 {
                                     this.state.movielist.map((movie)=>{
                                         return <Col key={movie.id} span={4}>
-                                                <Link to='/movie_detail/{movie.id}'>
+                                                <Link to={'/movie_detail/'+movie.id}>
                                                     <Card style={{ width: 200,height:333 }} bodyStyle={{ padding: 0 }}>
                                                         <div className="custom-image">
                                                         <img alt={movie.title} width='100%' height='270' src={movie.images.large} />
