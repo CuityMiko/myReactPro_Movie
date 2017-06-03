@@ -25,9 +25,14 @@ export default class MovieContainer extends Component{
             pageindex:this.props.params.page || 1,
             pagecount:12
         }
-        MovieServices.getMovieListData(movieobj);
-        // console.log(`4:${this.props.params.classify}`);
-        // console.log(`4:${this.props.params.page}`);
+        let mpromise = MovieServices.getMovieListData(movieobj);
+        mpromise.then((data)=>{
+            console.log(data);
+        },(err)=>{
+            console.log(err);
+        }).catch((err)=>{
+            console.log(err);
+        })
         //设置选中项
         let _selkey=['1'];
         switch (this.props.params.classify) {

@@ -30,6 +30,7 @@ module.exports = {
             "defaultParams": true
         }
     },
+    // 对于ES6箭头函数的支持
     "parser": "babel-eslint",
     // 启用的规则及各自的错误级别
     "rules" : {

@@ -9,7 +9,6 @@ export default class MovieServices{
     static getMovieListData(movieobj){
         //Get方式
         // let _url=`http://127.0.0.1:10086/movie/getlist?classify=${movieobj.classify}&pageindex=${movieobj.pageindex}&pagecount=${movieobj.pagecount}&city=杭州`;
-        // console.log(_url)
         // fetch(_url)  
         //     .then((response) => {
         //         if (response.ok) {
@@ -24,25 +23,28 @@ export default class MovieServices{
         //     .catch((err)=> {
         //         console.error(err)
         //     })
-        //Post方式
-        let _url=`http://127.0.0.1:10086/movie/getlist`;
-        fetch(_url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `classify=${movieobj.classify}&pageindex=${movieobj.pageindex}&pagecount=${movieobj.pagecount}&city=杭州`
-        }).then(function(res) {
-            if (res.ok) {
-                return res.json();
-            }
-        }).then((data)=>{
-            console.log(data)
-        }).catch((err)=>{
-            console.log(JSON.stringify(err));
+
+        //Post方式 + Promise/A+ 规范解决异步回调
+        return new Promise((resolve,reject)=>{
+            let _url=`http://127.0.0.1:10086/movie/getlist`;
+            fetch(_url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `classify=${movieobj.classify}&pageindex=${movieobj.pageindex}&pagecount=${movieobj.pagecount}&city=杭州`
+            }).then(function(res) {
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then((data)=>{
+                resolve(data);
+            }).catch((err)=>{
+                reject(err);
+            })
         })
 
-        //Jsonp跨域Get请求
+        //Jsonp跨域Get请求 Jsonp只支持get方式,cors支持get/post等各种方式
         // let count=12;
         // let start=(movieobj.pageindex-1)*count;
         // let city='杭州';
