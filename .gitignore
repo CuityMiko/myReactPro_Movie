@@ -4,3 +4,4 @@ dist/
 preview/
 src/bower_components/
 typings/
+movie_server/node_modules/
