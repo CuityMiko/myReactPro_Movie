@@ -8,4 +8,7 @@ module.exports = function (app) {
     app.post('/movie/getlist', function (req, res, next) { //获取电影列表
         movieController.getlist(req,res,next);
     });
+    app.post('/examples/promisea', function (req, res, next) { //练习promise/A+规范
+        movieController.getpresult(req,res,next);
+    });
 }

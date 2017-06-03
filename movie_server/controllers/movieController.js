@@ -21,7 +21,6 @@ var getlist=function(req, res, next){
         city:req.body.city,
         q:req.body.q
     }
-    console.log(obj)
     var promise=movieServices.getmovielist(req.body.classify,obj);
     promise.then((data)=>{
         res.json({result:true,data:data});
@@ -29,4 +28,9 @@ var getlist=function(req, res, next){
         res.json({result:false,data:err});
     })
 }
-module.exports = {getlist}
+
+// 练习promise/A+规范
+var getpresult=function(req,res,next){
+    res.json({result:parseInt(req.body.num1)+parseInt(req.body.num2)});
+}
+module.exports = {getlist,getpresult}

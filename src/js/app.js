@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom'
 // 自定义功能模块
 import Routers from '../js/routers.js'
 
+// examples
+import PromiseA from '../examples/PromiseA.js'
+
 ReactDOM.render(
     <div className='apphight'>
        <Routers />
