@@ -28,6 +28,7 @@
 + npm install antd --save
 + babel所需：babel-plugin-import
 + npm install babel-plugin-import --save-dev
++ 添加babel插件都需要添加babel-plugin前缀
 ```
 // .babelrc or babel-loader option
  {
