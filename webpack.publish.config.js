@@ -19,33 +19,37 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
+        // 为了做代码的异步加载
+        publicPath:'/',
+        chunkFilename: '[name]_[chunkhash:8]_chunk.js'
     },
     module: {
         loaders: [
             // 处理jsx语法和ES6语法
             {
                 test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
-                loader: 'babel',// 加载模块 "babel" 是 "babel-loader" 的缩写
-                query: {
-                    presets: ['es2015', 'react','stage-0','stage-1','stage-2','stage-3'],
-                    "plugins": [
-                        "transform-node-env-inline",
-                        "transform-object-assign",
-                        // ant babel-plugin-import
-                        ["import", [
-                            {
-                                "libraryName": "antd",
-                                "libraryDirectory": "lib",   // default: lib
-                                "style": "css"
-                            },
-                            {
-                                "libraryName": "material-ui",
-                                "libraryDirectory": "components",  // default: lib
-                                "camel2DashComponentName": false,  // default: true
-                            }
-                        ]]
-                    ]
-                }
+                loader: 'babel'// 加载模块 "babel" 是 "babel-loader" 的缩写
+                // query属性的内容都写在.babelrc文件中，这样在ncpm install babel-plugin-import后打包的时候就可以实现按需加载
+                // query: {
+                //     presets: ['es2015', 'react','stage-0','stage-1','stage-2','stage-3'],
+                //     "plugins": [
+                //         "transform-node-env-inline",
+                //         "transform-object-assign",
+                //         // ant babel-plugin-import
+                //         ["import", [
+                //             {
+                //                 "libraryName": "antd",
+                //                 "libraryDirectory": "lib",   // default: lib
+                //                 "style": "css"
+                //             },
+                //             {
+                //                 "libraryName": "material-ui",
+                //                 "libraryDirectory": "components",  // default: lib
+                //                 "camel2DashComponentName": false,  // default: true
+                //             }
+                //         ]]
+                //     ]
+                // }
             },
             {
                 test: /\.css$/, // Only .css files
@@ -99,6 +103,9 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'vendors.js'}),
         // 用webpack压缩代码，可以忽略代码中的警告
         new webpack.optimize.UglifyJsPlugin({
+            output: {
+                comments: false,
+            },
             compress: {
                 warnings: false
             }
@@ -123,13 +130,9 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             //去掉react中的警告，react会自己判断
-            'process.env': {
-                NODE_ENV: '"production"'
+            "process.env": { 
+                NODE_ENV: JSON.stringify("production") 
             }
-        }),
+        })
     ]
 }
-
-
-
-
