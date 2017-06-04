@@ -1,0 +1,20 @@
+{
+    "presets": ["es2015", "react","stage-0","stage-1","stage-2","stage-3"],
+    "plugins": [
+        "transform-node-env-inline",
+        "transform-object-assign",
+        // ant babel-plugin-import
+        ["import", [
+            {
+                "libraryName": "antd",
+                "libraryDirectory": "lib",   // default: lib
+                "style": "css"
+            },
+            {
+                "libraryName": "material-ui",
+                "libraryDirectory": "components",  // default: lib
+                "camel2DashComponentName": false,  // default: true
+            }
+        ]]
+    ]
+}
