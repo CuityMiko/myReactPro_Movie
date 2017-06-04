@@ -64,6 +64,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(flash());
 
+// 允许访问api的时候cors跨域（允许同域名不同端口号之间的跨域）
+app.use((req,res,next)=>{
+    // 增加了cors跨域的请求头
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    next();
+})
+
+//打包的静态文件默认访问
+app.get('*', function (req, res){
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
+
 //过滤器
 //全局身份验证
 // var authorizeFilter = moviepro.filters.authorize;
