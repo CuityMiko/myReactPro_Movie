@@ -21,6 +21,7 @@
 + src/containers : 路由的容器目录
 + src/js/routers.js : 路由文件
 + movie_server : server服务器代理
++ .babelrc : babel的query配置文件
 + 运行:npm run start
 
 ### UI框架使用 Ant Design of React
