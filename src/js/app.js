@@ -2,6 +2,8 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 
+import 'antd/dist/antd.css';
+
 // 自定义功能模块
 import Routers from '../js/routers.js'
 
