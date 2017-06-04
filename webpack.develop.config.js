@@ -15,6 +15,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
+        // 为了做代码的异步加载
+        publicPath:'/',
+        chunkFilename: '[name]_[chunkhash:8]_chunk.js'
     },
     eslint: {
         configFile: '.eslintrc.js'

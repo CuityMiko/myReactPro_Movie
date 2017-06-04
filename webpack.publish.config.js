@@ -19,6 +19,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
+        // 为了做代码的异步加载
+        publicPath:'/',
+        chunkFilename: '[name]_[chunkhash:8]_chunk.js'
     },
     module: {
         loaders: [
@@ -100,6 +103,9 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'vendors.js'}),
         // 用webpack压缩代码，可以忽略代码中的警告
         new webpack.optimize.UglifyJsPlugin({
+            output: {
+                comments: false,
+            },
             compress: {
                 warnings: false
             }
@@ -125,7 +131,8 @@ module.exports = {
         new webpack.DefinePlugin({
             //去掉react中的警告，react会自己判断
             'process.env': {
-                NODE_ENV: '"production"'
+                // NODE_ENV: '"production"',
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
             }
         }),
     ]

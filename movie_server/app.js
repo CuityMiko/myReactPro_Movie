@@ -73,6 +73,11 @@ app.use((req,res,next)=>{
     next();
 })
 
+//打包的静态文件默认访问
+app.get('*', function (req, res){
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
+
 //过滤器
 //全局身份验证
 // var authorizeFilter = moviepro.filters.authorize;
