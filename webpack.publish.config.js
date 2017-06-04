@@ -130,11 +130,10 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             //去掉react中的警告，react会自己判断
-            'process.env': {
-                // NODE_ENV: '"production"',
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            "process.env": { 
+                NODE_ENV: JSON.stringify("production") 
             }
-        }),
+        })
     ]
 }
 
