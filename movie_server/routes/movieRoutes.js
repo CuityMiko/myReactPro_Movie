@@ -14,4 +14,7 @@ module.exports = function (app) {
     app.post('/movie/detail', function (req, res, next) { //练习promise/A+规范
         movieController.getdetail(req,res,next);
     });
+    app.use('/examples/uploadimage', function (req, res, next) { //练习上传图片
+        movieController.uploadimage(req,res,next);
+    });
 }

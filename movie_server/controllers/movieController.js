@@ -3,6 +3,8 @@
  */
 'use strict';
 var movieServices = moviepro.services.movie;
+var common=moviepro.core.common;
+    
 
 // 获取电影列表
 var getlist=function(req, res, next){
@@ -48,4 +50,11 @@ var getdetail=function(req,res,next){
 var getpresult=function(req,res,next){
     res.json({result:parseInt(req.body.num1)+parseInt(req.body.num2)});
 }
-module.exports = {getlist,getpresult,getdetail}
+
+// 练习上传图片
+var uploadimage=function(req,res,next){
+    common.uploadImage(req,(err)=>{
+        
+    })
+}
+module.exports = {getlist,getpresult,getdetail,uploadimage}
