@@ -3,8 +3,9 @@
 //全局启动配置
 //
 module.exports = {
-    host: 'http://localhost',         //当前主机访问地址
-    listenPort: 10086, //监听端口
+    host: 'http://www.cuitymiko.com',         //当前主机访问地址
+    //host: 'http://192.168.0.104',
+    listenPort: 3389, //监听端口
     //express session配置
     sessionRedisHost: '10.10.247.171', //用于存储session的redis服务 
     sessionRedisPort: 6379, //用于存储session的redis服务端口

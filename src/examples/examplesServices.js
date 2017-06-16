@@ -4,7 +4,7 @@
 export default{
     getPromiseAresult(obj){
         return new Promise((resolve,reject)=>{
-            let _url='http://127.0.0.1:10086/examples/promisea/';
+            let _url='http://127.0.0.1:3389/examples/promisea/';
             fetch(_url,{
                 method:"POST",
                 headers:{

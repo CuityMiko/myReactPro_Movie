@@ -11,7 +11,7 @@ export default class MovieServices{
     static getMovieListData(movieobj){
         let _msg=JSON.stringify(movieobj);
         //Get方式
-        // let _url=`http://127.0.0.1:10086/movie/getlist?classify=${movieobj.classify}&pageindex=${movieobj.pageindex}&pagecount=${movieobj.pagecount}&city=杭州`;
+        // let _url=`http://127.0.0.1:3389/movie/getlist?classify=${movieobj.classify}&pageindex=${movieobj.pageindex}&pagecount=${movieobj.pagecount}&city=杭州`;
         // fetch(_url)  
         //     .then((response) => {
         //         if (response.ok) {

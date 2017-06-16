@@ -72,7 +72,7 @@ app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     next();
 })
-
+console.log('请求进来了....')
 //打包的静态文件默认访问
 app.get('*', function (req, res){
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
