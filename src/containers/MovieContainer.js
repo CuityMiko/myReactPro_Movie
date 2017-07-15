@@ -15,7 +15,20 @@ const { Content, Sider } = Layout;
 
 export default class MovieContainer extends Component{
     constructor(props){
-        super(props)        
+        super(props)    
+        this.state={
+            stu:{
+                name:'zhangsan',
+                age:14,
+                stucls:{
+                    id:1,
+                    title:'F1'
+                }
+            }
+        }    
+    }
+    changeState(obj){
+        this.setState(obj)
     }
     // 生命周期函数，组件将要接收到新的参数时触发（props上的属性值发生变化的时候触发）
     componentWillReceiveProps(nextProps){
@@ -71,7 +84,8 @@ export default class MovieContainer extends Component{
                     <Layout>
                         {/*内容列表*/}
                         <Content style={{ background: '#fff', padding: 15, margin: 0, minHeight: 280 }}>
-                            <MovieListComponent classify={this.props.params.classify} page={this.props.params.page} q={this.props.params.q}/>
+                            <span>{JSON.stringify(this.state.stu)}</span>
+                            <MovieListComponent changeState={this.changeState.bind(this)} student={this.state.stu} classify={this.props.params.classify} page={this.props.params.page} q={this.props.params.q}/>
                         </Content>
                     </Layout>
                 </Layout>

@@ -33,6 +33,10 @@ export default class MovieListComponent extends Component{
     }
     // 生命周期函数，组件在渲染之前触发
     componentWillMount(){
+        console.log(this.props.student)
+        this.props.student.name='lisi'
+        console.log(this.props.student)
+        this.props.changeState(this.props.student)
         this.getmovielistdata();
     }
     // 生命周期函数，组件将要接收到新的参数时触发（props上的属性值发生变化的时候触发）
